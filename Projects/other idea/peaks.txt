@@ -1,0 +1,12 @@
+from scipy.signal import find_peaks
+
+for i in range(0,np.shape(EEG_data_numpy_deleted)[1]-500,500):
+    signal_freq = np.fft.fftshift(np.fft.fft(EEG_data_numpy_deleted[0,i:i+500]))
+    signal_freq_abs = np.fft.fftshift(np.fft.fftfreq(signal_freq.size,d=1/freq_acquisition))
+    signal_freq[(len(signal_freq_abs)//2)] = 0
+    plt.plot(signal_freq_abs[(len(signal_freq_abs)//2):],np.abs(signal_freq[(len(signal_freq_abs)//2):]))
+    plt.xlim(0,50)
+    peaks,_ =find_peaks(np.abs(signal_freq[(len(signal_freq_abs)//2):]),distance = 2)
+    plt.plot(signal_freq_abs[(len(signal_freq_abs)//2):][peaks],np.abs(signal_freq[(len(signal_freq_abs)//2):])[peaks],"x")
+    print(target_numpy_deleted[i])
+    plt.show()
