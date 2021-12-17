@@ -58,3 +58,85 @@ def eeg_plot(eeg_signals, label, show_fig, file_path=None):
     if show_fig:
         plt.show()
     plt.close()
+
+
+"""--------------------------------------------------------------------------------------------------
+PLOT EEG SIGNALS DEPENDING ON THE TIME WITH THE TARGET
+INPUTS: 
+    - eeg_signals : a matrix of [nxm] dimensions where n (nb of channels) << m 
+    - target : vector of [m] length
+    - label : list of n strings with channel names (do not consider time)
+    - time : vector of [m] length
+--------------------------------------------------------------------------------------------------"""
+def eeg_target_plot(eeg_signals,target,label,time):
+    for i in range(np.shape(eeg_signals)[0]):
+        fig, axs = plt.subplots(2,1,figsize=(16,10))
+        fig.tight_layout()
+        axs = axs.flatten()
+        axs[0].plot(time[100000:150000],eeg_signals[i][100000:150000])
+        axs[1].plot(time[100000:150000],target[100000:150000])
+        name = "figures/target/signal_target_{}.png".format(label[i])
+        fig.savefig(name)
+        plt.close()
+    return
+
+
+"""--------------------------------------------------------------------------------------------------
+PLOT FORIER TRANSFORM OF EEG SIGNALS (32 CHANNELS)
+INPUTS: 
+    - eeg_signals : a matrix of [nxm] dimensions where n s(nb of channels) << m 
+    - label : list of n strings with channel names (do not consider time)
+    - freq_acquisition : frequence of acquisition
+--------------------------------------------------------------------------------------------------"""
+
+def eeg32_freq_plot(eeg_signals,label,freq_acquisition):
+    for i in range(4):
+        fig, axs = plt.subplots(4, 2,figsize=(16,10))
+        fig.tight_layout()
+        axs =axs.flatten()
+        for j in range(8):
+            signal_freq = np.fft.fftshift(np.fft.fft(eeg_signals[i*8 + j]))
+            signal_freq_abs = np.fft.fftshift(np.fft.fftfreq(signal_freq.size,d=1/freq_acquisition))
+            axs[j].plot(signal_freq_abs[(len(signal_freq_abs)//2):],
+                                                            (np.abs(signal_freq[(len(signal_freq_abs)//2):])))
+            axs[j].set_title(label[i*8 +j])
+            axs[j].set_ylim(0,150e4)
+        name = "figures/frequential/signal_freq_{}.png".format(i)
+        fig.savefig(name)
+        plt.close()  
+
+
+
+"""--------------------------------------------------------------------------------------------------
+PLOT FORIER TRANSFORM OF EEG SIGNALS AFTER AND BEFORE FILTERING
+INPUTS: 
+    - eeg_signals : a matrix of [nxm] dimensions where n s(nb of channels) << m 
+    - eeg_filtering_signals : a matrix of [nxm] dimensions where n s(nb of channels) << m 
+    - label : list of n strings with channel names (do not consider time)
+    - freq_acquisition : frequence of acquisition
+--------------------------------------------------------------------------------------------------"""
+
+def comparison_filtering_plot(eeg_signals,eeg_filtering_signals,freq_acquisition,label):
+    for i in range(len(label)):
+        fig, axs = plt.subplots(1, 2,figsize=(16,10))
+
+        signal_freq = np.fft.fftshift(np.fft.fft(eeg_signals[i]))
+        signal_freq_abs = np.fft.fftshift(np.fft.fftfreq(signal_freq.size,d=1/freq_acquisition))
+        axs[0].plot(signal_freq_abs[(len(signal_freq_abs)//2):],(np.abs(signal_freq[(len(signal_freq_abs)//2):])))
+        axs[0].set_ylim(0,150e4)
+        axs[0].set_xlabel('freqence [Hz]')
+        axs[0].set_ylabel('amplitude')
+        axs[0].set_title("Fourier transform of {} before filtering".format(label[i]))
+
+        signal_freq_1 = np.fft.fftshift(np.fft.fft(eeg_filtering_signals[i]))
+        signal_freq_abs_1 = np.fft.fftshift(np.fft.fftfreq(signal_freq_1.size,d=1/freq_acquisition))
+
+        axs[1].plot(signal_freq_abs_1[(len(signal_freq_abs_1)//2):],(np.abs(signal_freq_1[(len(signal_freq_abs_1)//2):])))
+        axs[1].set_ylim(0,1e6)
+        axs[1].set_xlim(0,50)
+        axs[1].set_xlabel('freqence [Hz]')
+        axs[1].set_ylabel('amplitude')
+        axs[1].set_title("Fourier transform of {} after filtering".format(label[i]))
+
+        fig.savefig("figures/frequential/signal_freq_w_{}_comparison.png".format(label[i]))
+        plt.close()
