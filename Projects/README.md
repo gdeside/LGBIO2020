@@ -1,34 +1,48 @@
 # LGBIO2020 - Project
 
 ---
-
-Simple overview of use/purpose.
-
+## Table of contents
+* [Description](#Description)
+* [Authors](#Authors)
+* [Installing and Dependencies](#Install)
 ***
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This repository contains the project for the LGBIO2020 course taught at UCLouvain in Belgium.
 
-[link rapport](https://www.overleaf.com/5625889847cfbcpfscbjrj)
+***
+## Authors :
 
-## Getting Started
+| Name                                 | NOMA           |
+|--------------------------------------|----------------|
+| <h3>Conet Brieuc               </h3> | **11181800**   |
+| <h3> Deside Guillaume</h3>           | **39731800**   |
 
-### Dependencies
+***
 
+## Installing and Dependencies
+In order to run this code you need to install the following modules :
 
-### Installing
+Numpy (https://numpy.org/install/)
 
+Pandas (https://pandas.pydata.org/docs/getting_started/install.html)
 
+Matplotlib (https://matplotlib.org/stable/users/installing/index.html)
 
-### Executing program
+PyWavelets (https://pywavelets.readthedocs.io/en/latest/install.html)
 
+Scikit-Learn (https://scikit-learn.org/stable/install.html)
 
-## Authors
-* Conet Brieuc ()
-* Deside Guillaume (39731800)
+`pip install -r requirements.txt`
 
+***
 
+## Report
+
+[link report](https://www.overleaf.com/5625889847cfbcpfscbjrj)
+
+***
 ## Acknowledgments
 
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)

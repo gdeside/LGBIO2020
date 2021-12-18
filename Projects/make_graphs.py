@@ -140,3 +140,25 @@ def comparison_filtering_plot(eeg_signals,eeg_filtering_signals,freq_acquisition
 
         fig.savefig("figures/frequential/signal_freq_w_{}_comparison.png".format(label[i]))
         plt.close()
+
+
+
+"""--------------------------------------------------------------------------------------------------
+PLOT DELAY BETWEEN TARGET AND EEG
+INPUTS: 
+    - eeg_signals : a vector of [m] length
+    - target :  a vector of [m] length
+    - time :  a vector of [m] length
+--------------------------------------------------------------------------------------------------"""
+def delay_plot(eeg_signal,target,time):
+    for i in range(len(eeg_signal)-1):
+        if not np.isnan(target[i]) and not np.isnan(target[i+1]):
+            if target[i] != target[i+1]:
+                fig, axs = plt.subplots(2, 1,figsize=(16,10))
+                axs[0].plot(time[i-6000:i+6000],eeg_signal[i-6000:i+6000])
+                axs[0].set_xlim(time[i-6000],time[i+6000])
+                axs[1].plot(time[i-6000:i+6000],target[i-6000:i+6000])
+                axs[1].set_xlim(time[i-6000],time[i+6000])
+                name = "figures/delay/delay_nofilter_{}.png".format(i)
+                fig.savefig(name)
+                plt.close()
