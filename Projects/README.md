@@ -5,6 +5,7 @@
 * [Description](#Description)
 * [Authors](#Authors)
 * [Installing and Dependencies](#Install)
+* [Report](#Report)
 ***
 
 ## Description
@@ -12,7 +13,7 @@
 This repository contains the project for the LGBIO2020 course taught at UCLouvain in Belgium.
 
 ***
-## Authors :
+## Authors
 
 | Name                                 | NOMA           |
 |--------------------------------------|----------------|
@@ -44,9 +45,7 @@ Scikit-Learn (https://scikit-learn.org/stable/install.html)
 
 ***
 ## Acknowledgments
+This work was inspired by
 
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [article 1](https://www.sciencedirect.com/science/article/pii/S0169260705000246)
+* [article 2](https://www.sciencedirect.com/science/article/pii/S0957417411003162)

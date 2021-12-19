@@ -118,7 +118,7 @@ INPUTS:
 
 def comparison_filtering_plot(eeg_signals,eeg_filtering_signals,freq_acquisition,label):
     for i in range(len(label)):
-        fig, axs = plt.subplots(1, 2,figsize=(16,10))
+        fig, axs = plt.subplots(1, 2,figsize=(18,8))
 
         signal_freq = np.fft.fftshift(np.fft.fft(eeg_signals[i]))
         signal_freq_abs = np.fft.fftshift(np.fft.fftfreq(signal_freq.size,d=1/freq_acquisition))
