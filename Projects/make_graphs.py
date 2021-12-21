@@ -159,6 +159,7 @@ def delay_plot(eeg_signal,target,time):
                 axs[0].set_xlim(time[i-6000],time[i+6000])
                 axs[1].plot(time[i-6000:i+6000],target[i-6000:i+6000])
                 axs[1].set_xlim(time[i-6000],time[i+6000])
+                axs[1].set_xlabel("time[ms]")
                 name = "figures/delay/delay_nofilter_{}.png".format(i)
                 fig.savefig(name)
                 plt.close()
